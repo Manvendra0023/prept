@@ -172,7 +172,8 @@ export const requestWithdrawal = async ({
 
     // Fire admin email — non-blocking, failure won't affect the user
     try {
-      const reviewUrl = `${process.env.NEXT_PUBLIC_APP_URL}/payout/${payout.id}`;
+      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://prept-beta.vercel.app";
+      const reviewUrl = `${baseUrl}/payout/${payout.id}`;
       const html = await render(
         WithdrawalRequestEmail({
           interviewerName: dbUser.name ?? "Unknown",
